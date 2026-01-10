@@ -1,0 +1,23 @@
+<h1>Flights#index</h1>
+<p>Find me in app/views/flights/index.html.erb</p>
+
+<%= @airports.to_a %>
+
+<%= form_with  do  |f| %>
+    <div class="field">
+        <%= f.label :departure_airport %>
+        <%= f.collection_select :departure_airport, @airports, :id, :code, prompt: true %>
+    </div>
+    <div class="field">
+        <%= f.label :arrival_airport %>
+        <%= f.collection_select :arrival_airport, @airports, :id, :code, prompt: true %>
+    </div>
+    <div class="field">
+        <%= f.label :flight_dates %>
+        <%= select_tag "date", options_for_select(@flight_dates) %>
+    </div>
+    <div class="field">
+        <%= f.label :passengers %>
+        <%= select_tag "passengers", options_for_select(1..4) %>
+    </div>
+<% end %>
