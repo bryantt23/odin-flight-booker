@@ -3,7 +3,7 @@
 
 <%= @airports.to_a %>
 
-<%= form_with  do  |f| %>
+<%= form_with method: "GET", url: "/flights?" do |f| %>
     <div class="field">
         <%= f.label :departure_airport %>
         <%= f.collection_select :departure_airport, @airports, :id, :code, prompt: true %>
@@ -20,4 +20,21 @@
         <%= f.label :passengers %>
         <%= select_tag "passengers", options_for_select(1..4) %>
     </div>
+    <%= f.submit "Search" %>    
 <% end %>
+
+<p>
+<%= @url %>
+
+</p>
+
+<p>
+<%= @params %>
+</p>
+
+<p>
+    Search results
+<%= @search_results.to_a %>
+
+<%= @search_results.to_a.length %>
+</p>
