@@ -8,11 +8,17 @@ class FlightsController < ApplicationController
     puts request.original_url
     puts "arrival_airport #{params[:arrival_airport]}"
     puts "passengers #{params[:passengers]}"
+
     @params=params
-    @date=Date.strptime(params[:date], "%m/%d/%Y")
-    puts @date
-    @search_results=Flight.where(departure_airport: params[:departure_airport], arrival_airport: params[:arrival_airport], start: @date.beginning_of_day..@date.end_of_day)
-      puts @search_results
+
+    @search_results=[]
+    @passengers=params[:passengers]
+    if params[:date].present?
+      @date=Date.strptime(params[:date], "%m/%d/%Y")
+      puts @date
+      @search_results=Flight.where(departure_airport: params[:departure_airport], arrival_airport: params[:arrival_airport], start: @date.beginning_of_day..@date.end_of_day)            
+    end
+    puts @search_results
   end
 
   def create

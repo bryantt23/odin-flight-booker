@@ -38,3 +38,10 @@
 
 <%= @search_results.to_a.length %>
 </p>
+
+
+<%= form_with do |f| %>
+    <%= f.hidden_field :passengers, value: @passengers %>
+    <%= f.collection_radio_buttons :search_results, @search_results, :id, :start %>
+    <%= f.submit "Book" %>
+<% end %>
