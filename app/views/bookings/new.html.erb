@@ -1,0 +1,41 @@
+<h1>Bookings#new</h1>
+<p>Find me in app/views/bookings/new.html.erb</p>
+<%= @params %>
+
+<p>
+<%= 
+"FROM: #{@departure_airport}"
+%>
+</p>
+<p>
+<%= 
+"TO: #{@arrival_airport}"
+%>
+</p>
+<p>
+<%= 
+"START: #{@flight.start}"
+%>
+</p>
+
+<%= form_with model: @booking, url: bookings_path do |f| %>
+    <div>
+      <%= f.label :email_address %>
+      <%= f.email_field :email_address, placeholder: "you@example.com", value:"b@gmail.com" %>
+    </div>
+
+    <% @booking.passengers.each_with_index do |passenger, index| %>
+      <div>
+        hi
+        <%= f.fields_for :passengers, passenger do |passenger_form| %>
+          <%= passenger_form.label :name, "Passenger #{index+1} name" %>
+          <%= passenger_form.text_field :name,
+            placeholder: "Enter name", 
+            value: "Passenger #{index+1}" %>
+        <% end %>
+      </div>
+    <% end %>
+  <%= f.submit "Submit Answers" %>
+<% end %>
+
+

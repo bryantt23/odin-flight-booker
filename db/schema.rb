@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_06_114518) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_20_190504) do
   create_table "airports", force: :cascade do |t|
     t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -25,4 +30,13 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_06_114518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "passengers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "booking_id", null: false
+    t.index ["booking_id"], name: "index_passengers_on_booking_id"
+  end
+
+  add_foreign_key "passengers", "bookings"
 end
