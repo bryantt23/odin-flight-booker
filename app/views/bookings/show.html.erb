@@ -1,0 +1,25 @@
+<h1>Booking</h1>
+
+<p>Email: <%= @booking.email_address %></p>
+<h2>Passengers</h2>
+<ul>
+    <% @passengers.each do |passenger| %>
+        <li><%= passenger.name %></li>
+    <% end %>
+</ul>
+
+
+<%= 
+"FROM: #{@flight.departure_airport.code}"
+%>
+</p>
+<p>
+<%= 
+"TO: #{@flight.arrival_airport.code}"
+%>
+</p>
+<p>
+<%= 
+"START: #{@flight.start}"
+%>
+</p>

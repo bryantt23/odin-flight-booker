@@ -19,12 +19,13 @@
 </p>
 
 <%= form_with model: @booking, url: bookings_path do |f| %>
-    <div>
-      <%= f.label :email_address %>
-      <%= f.email_field :email_address, placeholder: "you@example.com", value:"b@gmail.com" %>
-    </div>
+  <%= hidden_field_tag "booking[flight_id]", @flight.id %>
+  <div>
+    <%= f.label :email_address %>
+    <%= f.email_field :email_address, placeholder: "you@example.com", value:"b@gmail.com" %>
+  </div>
 
-    <% @booking.passengers.each_with_index do |passenger, index| %>
+  <% @booking.passengers.each_with_index do |passenger, index| %>
       <div>
         hi
         <%= f.fields_for :passengers, passenger do |passenger_form| %>

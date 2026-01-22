@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :flights
-  resources :bookings, only: [ :new, :create ]
+  resources :bookings, only: [ :new, :create, :show ]
 
   # post "submit_form", to: "bookings#create"
 

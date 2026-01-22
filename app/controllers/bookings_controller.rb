@@ -13,6 +13,24 @@ class BookingsController < ApplicationController
 
   def create
     puts params
-    @params
+    @booking=Booking.new(booking_params)
+    if @booking.save
+      redirect_to @booking
+    end
+  end
+
+  def show
+    @booking=Booking.find(params[:id])
+    @flight=Flight.find(@booking.flight_id)
+    @passengers=@booking.passengers
+  end
+
+  private
+  def booking_params
+    params.require(:booking).permit(
+      :email_address,
+      :flight_id,
+      passengers_attributes: [ :name ]
+    )
   end
 end
