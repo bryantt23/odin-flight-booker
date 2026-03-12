@@ -27,16 +27,25 @@
 
   <% @booking.passengers.each_with_index do |passenger, index| %>
       <div>
-        hi
         <%= f.fields_for :passengers, passenger do |passenger_form| %>
           <%= passenger_form.label :name, "Passenger #{index+1} name" %>
           <%= passenger_form.text_field :name,
             placeholder: "Enter name", 
             value: "Passenger #{index+1}" %>
+            
         <% end %>
       </div>
     <% end %>
+    
+    <div data-controller="add-passenger">      
+      <ul id="more-passengers" data-add-passenger-target="items">
+      </ul>
+      <button data-action="add-passenger#addItem">Add passenger stimulus</button>
+    </div>
   <%= f.submit "Submit Answers" %>
 <% end %>
+
+
+  
 
 
