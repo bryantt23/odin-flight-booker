@@ -13,8 +13,10 @@ class BookingsController < ApplicationController
 
   def create
     puts params
+    puts booking_params
     @booking=Booking.new(booking_params)
     if @booking.save
+      PassengerMailer.with(params: @booking).welcome_email.deliver_now
       redirect_to @booking
     end
   end
